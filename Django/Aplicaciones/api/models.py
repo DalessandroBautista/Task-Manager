@@ -4,4 +4,4 @@ from django.db import models
 class Task(models.Model):
     name = models.CharField(max_length=100)
     date=models.DateTimeField
-    state=models.BooleanField()
+    state=models.BooleanField(default='False')
