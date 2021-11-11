@@ -42,7 +42,12 @@ class TaskView(View):
         return JsonResponse(datos)
 
     def delete(self, request, id):
-        pass
+        tasks=list(Folder.objects.filter(id=id).values())
+        if len(tasks)>0:
+            Task.objects.filter(id=id).delete()
+            datos={'message':"Success"}
+        else: datos={'message':"Folder not found"}
+        return JsonResponse(datos)
 #Vista de la clase view con los métodos para crear, leer, actualizar y eliminar una Folder
 class FolderView(View):
     @method_decorator(csrf_exempt)
@@ -78,4 +83,9 @@ class FolderView(View):
         else: datos={'message':"Folder not found"}
         return JsonResponse(datos)
     def delete(self, request, id):
-        pass
+        folders=list(Folder.objects.filter(id=id).values())
+        if len(folders)>0:
+            Folder.objects.filter(id=id).delete()
+            datos={'message':"Success"}
+        else: datos={'message':"Folder not found"}
+        return JsonResponse(datos)
