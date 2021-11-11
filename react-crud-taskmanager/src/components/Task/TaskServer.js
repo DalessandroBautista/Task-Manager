@@ -1,6 +1,6 @@
 const API_URL = "http://127.0.0.1:8000/tasks/";
 
-export const listTask = async () => {
+export const listTasks = async () => {
     return await fetch(API_URL);
 };
 
@@ -20,14 +20,14 @@ export const registerTask = async (newTask) => {
     });
 };
 
-export const updateTask = async (taskId, updateTask) => {
+export const updateTask = async (taskId, updatedTask) => {
     return await fetch(`${API_URL}${taskId}`, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json'
         },
         body: JSON.stringify({
-            "name": String(updateTask.name).trim(),
+            "name": String(updatedTask.name).trim(),
         })
     });
 };

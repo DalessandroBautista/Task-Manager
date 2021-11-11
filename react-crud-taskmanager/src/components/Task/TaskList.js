@@ -2,15 +2,15 @@ import React, { useEffect, useState } from "react";
 
 // Components:
 import TaskItem from "./TaskItem";
-
+import TaskForm from "./TaskForm";
 import * as TaskServer from "./TaskServer";
 
 const TaskList = () => {
   const [tasks, setTasks] = useState([]);
 
-  const listTask = async () => {
+  const listTasks = async () => {
     try {
-      const res = await TaskServer.listTask();
+      const res = await TaskServer.listTasks();
       const data = await res.json();
       setTasks(data.tasks);
     } catch (error) {
@@ -19,15 +19,19 @@ const TaskList = () => {
   };
 
   useEffect(() => {
-    listTask();
+    listTasks();
   }, []);
 
   return (
-    <div className="row">
-      {tasks.map((task) => (
-        <TaskItem key={task.id} task={task} />
-      ))}
+    <div>
+        <div className="row">
+          {tasks.map((task) => (
+          <TaskItem key={task.id} task={task} listTasks={listTasks} />
+          ))}
+          <TaskForm listTasks={listTasks}/>
+        </div>
     </div>
+
   );
 };
 

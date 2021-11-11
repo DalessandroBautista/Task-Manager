@@ -17,7 +17,6 @@ ReactDOM.render(
       <div className="container my-4">
         <Switch>
           <Route exact path="/" component={TaskList} />
-          <Route path="/taskForm" component={TaskForm} />
           <Route path="/updateTask/:id" component={TaskForm} />
         </Switch>
       </div>

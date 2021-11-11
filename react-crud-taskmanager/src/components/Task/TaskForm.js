@@ -3,7 +3,7 @@ import { useHistory, useParams } from "react-router-dom";
 
 import * as TaskServer from "./TaskServer";
 
-const TaskForm = () => {
+const TaskForm = ({listTasks }) => {
   const history = useHistory();
   const params = useParams();
 
@@ -26,7 +26,6 @@ const TaskForm = () => {
       if (!params.id) {
         res = await TaskServer.registerTask(task);
         const data = await res.json();
-        console.log(data)
         if (data.message === "Success") {
           setTask(initialState);
         }
@@ -34,6 +33,7 @@ const TaskForm = () => {
         await TaskServer.updateTask(params.id, task);
       }
       history.push("/");
+      listTasks();
     } catch (error) {
       console.log(error);
     }
@@ -58,26 +58,25 @@ const TaskForm = () => {
   }, []);
 
   return (
+
     <div className="col-md-3 mx-auto">
-      <h2 className="mb-3 text-center">Task</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
-          <label className="form-label">Name</label>
+          <label className="form-label">Task</label>
           <input type="text" name="name" value={task.name} onChange={handleInputChange} className="form-control" minLength="2" maxLength="50" autoFocus required />
-        </div>
-        <div className="d-grid gap-2">
           {params.id ? (
             <button type="submit" className="btn btn-block btn-primary">
               Update
             </button>
           ) : (
             <button type="submit" className="btn btn-block btn-success">
-              Register
+              Add
             </button>
           )}
         </div>
       </form>
     </div>
+    
   );
 };
 
