@@ -21,11 +21,11 @@ const TaskList = () => {
   useEffect(() => {
     listTasks();
   }, []);
-
+  console.log(tasks);
   return (
     <div>
       <div className="row">
-        {tasks.map((task) => (
+        {tasks?.map((task) => (
           <TaskItem key={task.id} task={task} listTasks={listTasks} />
         ))}
         <TaskForm listTasks={listTasks} />

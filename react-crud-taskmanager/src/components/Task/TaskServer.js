@@ -21,7 +21,7 @@ export const registerTask = async (newTask) => {
 };
 //Actualiza una tarea mediante el id, recibida por parametro
 export const updateTask = async (taskId, updatedTask) => {
-    console.log(updateTask);
+    console.log("estoy en update");
     return await fetch(`${API_URL}${taskId}`, {
         method: 'PUT',
         headers: {
