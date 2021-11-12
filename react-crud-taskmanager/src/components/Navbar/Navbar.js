@@ -19,12 +19,12 @@ const Navbar = () => {
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/taskForm">
-                Add Task
+                Log in
               </Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/folderForm">
-                Add Folder
+                Register
               </Link>
             </li>
           </ul>

@@ -7,7 +7,7 @@ import * as TaskServer from "./TaskServer";
 
 const TaskList = () => {
   const [tasks, setTasks] = useState([]);
-
+  //Invoca a la funcion listTasks del archivo TaskServer para obtener toda la lista de tareas.
   const listTasks = async () => {
     try {
       const res = await TaskServer.listTasks();
@@ -24,14 +24,13 @@ const TaskList = () => {
 
   return (
     <div>
-        <div className="row">
-          {tasks.map((task) => (
+      <div className="row">
+        {tasks.map((task) => (
           <TaskItem key={task.id} task={task} listTasks={listTasks} />
-          ))}
-          <TaskForm listTasks={listTasks}/>
-        </div>
+        ))}
+        <TaskForm listTasks={listTasks} />
+      </div>
     </div>
-
   );
 };
 

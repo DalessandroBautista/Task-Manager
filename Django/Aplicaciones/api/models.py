@@ -7,6 +7,6 @@ class Folder(models.Model):
 class Task(models.Model):
     name = models.CharField(max_length=100)
     date=models.DateTimeField
-    state=models.BooleanField(default='False')
+    status=models.BooleanField(default='False')
     folder = models.ForeignKey(Folder, on_delete=models.CASCADE, default=1)
 

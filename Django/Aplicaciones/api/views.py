@@ -32,10 +32,12 @@ class TaskView(View):
 
     def put(self, request, id):
         jd=json.loads(request.body)
+        print(jd)
         tasks=list(Task.objects.filter(id=id).values())
         if len(tasks)>0:
             task=Task.objects.get(id=id)
             task.name=jd['name']
+            task.status=jd['status']
             task.save()
             datos={'message':"Success"}
         else: datos={'message':"Task not found"}
