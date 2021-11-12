@@ -21,7 +21,6 @@ const TaskItem = ({ task, listTasks }) => {
         const res = await TaskServer.getTask(taskId);
     
         const data = await res.json();
-
         let task=data.tasks;
         let Vstatus= task.status;
         Vstatus= (!Vstatus);

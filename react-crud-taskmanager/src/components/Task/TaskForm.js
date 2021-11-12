@@ -3,7 +3,7 @@ import { useHistory, useParams } from "react-router-dom";
 
 import * as TaskServer from "./TaskServer";
 
-const TaskForm = () => {
+const TaskForm = ({listTasks}) => {
   const history = useHistory();
   const params = useParams();
 
@@ -32,9 +32,11 @@ const TaskForm = () => {
         await TaskServer.updateTask(params.id, task);
       }
       history.push("/");
+      listTasks();
     } catch (error) {
       console.log(error);
     }
+
   };
 
   const getTask = async (taskId) => {
